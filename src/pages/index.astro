@@ -1,0 +1,141 @@
+---
+const chats = [
+  {
+    id: 1,
+    name: "General",
+  },
+  {
+    id: 2,
+    name: "Random",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>LLUI</title>
+  </head>
+  <body class="bg-primary-dark text-white h-screen transition-all">
+    <header class="flex gap-4 items-center">
+      <button
+        id="sidebar-toggle"
+        title="toggle menu"
+        class="p-2 hover:bg-white/20 transition-colors rounded-lg"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12"></path>
+        </svg>
+      </button>
+      <strong class="py-2">LLUI</strong>
+    </header>
+    <aside
+      class="grid grid-rows-[auto_auto_1fr] transition-opacity delay-75"
+      id="sidebar"
+    >
+      <button
+        class="px-6 py-2 rounded-full bg-primary-light hover:bg-white/10 shadow-sm transition-colors justify-self-start"
+      >
+        + New Chat
+      </button>
+      <h2 class="mt-4 text-xl font-bold">Chats</h2>
+      <ul class="mt-2 flex flex-col gap-2 overflow-y-auto">
+        {
+          chats.map((chat) => (
+            <li class="px-4 py-2 hover:bg-white/10 rounded-lg transition-colors">
+              <a href={`/chat/${chat.id}`}>{chat.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </aside>
+    <main class="p-4 bg-primary-light rounded-3xl">
+      <!-- Chat ui -->
+      <div></div>
+      <!-- Chat input -->
+      <div class="grid grid-cols-[1fr_auto] w-full max-w-2xl mx-auto [&>*]:p-4">
+        <input
+          type="text"
+          class="bg-primary-dark outline-none focus:ring rounded-lg"
+          placeholder="Enter Your Prompt"
+        />
+        <button title="Submit">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </main>
+  </body>
+</html>
+
+<script>
+  const body = document.body as HTMLElement;
+  const sidebar = document.getElementById("sidebar") as HTMLElement;
+  const sidebarToggle = document.getElementById(
+    "sidebar-toggle"
+  ) as HTMLElement;
+
+  sidebarToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("opacity-0");
+    sidebar.classList.toggle("pointer-events-none");
+    sidebar.classList.toggle("delay-75");
+    body.classList.toggle("sidebar-close");
+    body.classList.toggle("delay-75");
+  });
+</script>
+
+<style>
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas:
+      "header header"
+      "aside main";
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  body.sidebar-close {
+    grid-template-columns: 0px 1fr;
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  aside {
+    grid-area: aside;
+  }
+
+  main {
+    display: grid;
+    grid-area: main;
+    grid-template-rows: 1fr auto;
+  }
+</style>
