@@ -1,0 +1,107 @@
+---
+import MenuIcon from "../assets/icons/MenuIcon.astro";
+import SettingsIcon from "../assets/icons/SettingsIcon.astro";
+import Button from "../components/Button.astro";
+
+const chats = [
+  {
+    id: 1,
+    name: "General",
+  },
+  {
+    id: 2,
+    name: "Random",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>LLUI</title>
+  </head>
+  <body
+    class="bg-primary-dark text-white h-screen transition-all gap-4 p-4 pb-4"
+  >
+    <header class="flex gap-4 items-center">
+      <Button btn type="button" id="sidebar-toggle" title="toggle menu">
+        <MenuIcon />
+      </Button>
+      <Button btn={false} class="px-6" href="/">
+        <strong>LLUI</strong>
+      </Button>
+    </header>
+    <aside
+      class="grid grid-rows-[auto_auto_1fr] transition-opacity delay-75"
+      id="sidebar"
+    >
+      <Button btn class="px-6 bg-primary-light shadow-sm justify-self-start">
+        + New Chat
+      </Button>
+      <h2 class="mt-4 text-xl font-bold">Chats</h2>
+      <ul class="mt-2 flex flex-col gap-2 overflow-y-auto">
+        {
+          chats.map((chat) => (
+            <li>
+              <Button btn class="w-full text-left px-4">
+                {chat.name}
+              </Button>
+            </li>
+          ))
+        }
+      </ul>
+      <Button btn={false} href="/settings" class="mt-auto flex items-center">
+        <SettingsIcon />
+        <span class="ml-2">Settings</span>
+      </Button>
+    </aside>
+    <slot />
+  </body>
+</html>
+
+<script>
+  const body = document.body as HTMLElement;
+  const sidebar = document.getElementById("sidebar") as HTMLElement;
+  const sidebarToggle = document.getElementById(
+    "sidebar-toggle"
+  ) as HTMLElement;
+
+  sidebarToggle.addEventListener("click", () => {
+    sidebar?.classList.toggle("opacity-0");
+    sidebar?.classList.toggle("pointer-events-none");
+    sidebar?.classList.toggle("delay-75");
+    body.classList.toggle("sidebar-close");
+    body.classList.toggle("delay-75");
+  });
+</script>
+
+<style>
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas:
+      "header header"
+      "aside main";
+    padding: 1rem;
+    gap: 1rem;
+  }
+  body.sidebar-close {
+    grid-template-columns: 0px 1fr;
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  aside {
+    grid-area: aside;
+  }
+
+  main {
+    grid-area: main;
+  }
+</style>

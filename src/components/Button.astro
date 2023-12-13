@@ -1,0 +1,27 @@
+---
+type Props =
+  | ({ btn: true } & astroHTML.JSX.ButtonHTMLAttributes)
+  | ({
+      btn: false;
+    } & astroHTML.JSX.AnchorHTMLAttributes);
+
+const { btn, class: className, ...rest } = Astro.props;
+---
+
+{
+  btn ? (
+    <button
+      {...(rest as any)}
+      class={`p-2 hover:bg-white/20 transition-colors rounded-lg ${className}`}
+    >
+      <slot />
+    </button>
+  ) : (
+    <a
+      {...rest}
+      class={`p-2 hover:bg-white/20 transition-colors rounded-lg ${className}`}
+    >
+      <slot />
+    </a>
+  )
+}

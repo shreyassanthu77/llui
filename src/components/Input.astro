@@ -1,0 +1,10 @@
+---
+type Props = astroHTML.JSX.InputHTMLAttributes;
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<input
+  class={`bg-primary-dark outline-none focus:ring rounded-lg ${className}`}
+  {...rest}
+/>
