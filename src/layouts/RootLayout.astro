@@ -13,6 +13,8 @@ const chats = [
     name: "Random",
   },
 ];
+
+const path = Astro.url.pathname;
 ---
 
 <html lang="en">
@@ -33,6 +35,12 @@ const chats = [
       <Button btn={false} class="px-6" href="/">
         <strong>LLUI</strong>
       </Button>
+      <select
+        class="rounded-3xl bg-primary-dark px-4 py-2 hover:bg-primary-light"
+      >
+        <option>GPT-3.5</option>
+        <option>GPT-4</option>
+      </select>
     </header>
     <aside
       class="grid grid-rows-[auto_auto_1fr] transition-opacity delay-75"
@@ -53,15 +61,24 @@ const chats = [
           ))
         }
       </ul>
-      <Button btn={false} href="/settings" class="mt-auto flex items-center">
+
+      <Button
+        btn={false}
+        href="/plugins"
+        class:list={[
+          "mt-auto flex items-center",
+          {
+            "border-l-2 border-primary": path === "/plugins",
+          },
+        ]}
+      >
         <SettingsIcon />
-        <span class="ml-2">Settings</span>
+        <span class="ml-2">Plugins</span>
       </Button>
     </aside>
     <slot />
   </body>
 </html>
-
 <script>
   const body = document.body as HTMLElement;
   const sidebar = document.getElementById("sidebar") as HTMLElement;
@@ -79,6 +96,10 @@ const chats = [
 </script>
 
 <style>
+  :root {
+    color-scheme: dark;
+  }
+
   body {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -101,7 +122,21 @@ const chats = [
     grid-area: aside;
   }
 
-  main {
+  :global(main) {
     grid-area: main;
+    overflow-y: auto;
+  }
+
+  :global(main::-webkit-scrollbar) {
+    width: 0.5rem;
+  }
+
+  :global(main::-webkit-scrollbar-track) {
+    background: transparent;
+  }
+
+  :global(main::-webkit-scrollbar-thumb) {
+    background: #4b5563;
+    border-radius: 0.25rem;
   }
 </style>

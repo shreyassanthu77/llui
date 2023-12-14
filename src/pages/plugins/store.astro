@@ -1,0 +1,28 @@
+---
+import Plugin from "../../components/Plugin.astro";
+import RootLayout from "../../layouts/RootLayout.astro";
+---
+
+<RootLayout>
+  <main class="container rounded-3xl bg-primary-light px-6 py-4">
+    <h1 class="text-3xl font-bold">Store</h1>
+
+    <div class="mt-6">
+      <h2 class="text-2xl font-bold">Installed Plugins</h2>
+      <ul class="mt-4 flex flex-wrap gap-4">
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+        <Plugin installed={false} />
+      </ul>
+    </div>
+  </main>
+</RootLayout>

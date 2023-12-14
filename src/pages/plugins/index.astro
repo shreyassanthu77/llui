@@ -1,0 +1,29 @@
+---
+import Button from "../../components/Button.astro";
+import Plugin from "../../components/Plugin.astro";
+import RootLayout from "../../layouts/RootLayout.astro";
+---
+
+<RootLayout>
+  <main class="container rounded-3xl bg-primary-light px-6 py-4">
+    <h1 class="text-3xl font-bold">Plugins</h1>
+    <p class="mt-4 text-lg">
+      LLUI uses plugins to add different models, history and other features. You
+      can find and install plguins by clicking the button below.
+      <Button
+        btn={false}
+        href="/plugins/store"
+        class="mt-2 block max-w-max bg-primary px-6 shadow-sm hover:bg-primary-lighter"
+      >
+        Plugins Store
+      </Button>
+    </p>
+
+    <div class="mt-6">
+      <h2 class="text-2xl font-bold">Installed Plugins</h2>
+      <ul class="mt-4 flex gap-4">
+        <Plugin />
+      </ul>
+    </div>
+  </main>
+</RootLayout>

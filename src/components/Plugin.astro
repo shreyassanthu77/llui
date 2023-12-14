@@ -1,0 +1,48 @@
+---
+import SettingsIcon from "../assets/icons/SettingsIcon.astro";
+import DeleteIcon from "../assets/icons/DeleteIcon.astro";
+import Button from "./Button.astro";
+
+const text = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+    voluptatum, voluptate, quibusdam, quia voluptas quas quos voluptatibus quod
+    voluptatem quidem dolorum. Quisquam voluptatum, voluptate, quibusdam, quia
+    voluptas quas quos voluptatibus quod voluptatem quidem dolorum.`.slice(
+  0,
+  Math.floor(Math.random() * 100) + 50,
+);
+
+export type Props = {
+  installed?: boolean;
+};
+
+const { installed = true } = Astro.props;
+---
+
+<li class="flex max-w-md flex-col gap-4 rounded-3xl bg-primary-dark p-4">
+  <h3 class="text-xl font-bold">Plugin Name</h3>
+  <p class="text-lg">
+    {text}
+  </p>
+  <div class="mt-auto flex gap-4">
+    {
+      installed ? (
+        <>
+          <Button btn class="text-primary-lighter" title="Plugin Options">
+            <SettingsIcon />
+          </Button>
+          <Button btn class="text-red-700" title="Delete Plugin">
+            <DeleteIcon />
+          </Button>
+        </>
+      ) : (
+        <Button
+          btn
+          class="bg-primary px-6 hover:bg-primary-lighter"
+          title="Install Plugin"
+        >
+          Install
+        </Button>
+      )
+    }
+  </div>
+</li>

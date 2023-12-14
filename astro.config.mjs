@@ -7,5 +7,16 @@ import deno from "@astrojs/deno";
 export default defineConfig({
   output: "server",
   adapter: deno(),
+  vite: {
+    server: {
+      headers: {
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Embedder-Policy": "require-corp",
+      },
+    },
+    optimizeDeps: {
+      exclude: ["@sqlite.org/sqlite-wasm"],
+    },
+  },
   integrations: [tailwind()],
 });
