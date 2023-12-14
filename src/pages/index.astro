@@ -6,11 +6,11 @@ import Input from "../components/Input.astro";
 ---
 
 <RootLayout>
-  <main class="grid grid-rows-[1fr_auto] p-4 bg-primary-light rounded-3xl">
+  <main class="grid grid-rows-[1fr_auto] rounded-3xl bg-primary-light p-4">
     <!-- Chat ui -->
     <div></div>
     <!-- Chat input -->
-    <form class="grid grid-cols-[1fr_auto] w-full max-w-2xl mx-auto [&>*]:p-4">
+    <form class="mx-auto grid w-full max-w-2xl grid-cols-[1fr_auto] [&>*]:p-4">
       <Input type="text" placeholder="Enter Your Prompt" />
       <Button btn title="Submit">
         <SendIcon />

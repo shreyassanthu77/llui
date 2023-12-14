@@ -12,14 +12,14 @@ const { btn, class: className, ...rest } = Astro.props;
   btn ? (
     <button
       {...(rest as any)}
-      class={`p-2 hover:bg-white/20 transition-colors rounded-lg ${className}`}
+      class={`rounded-lg p-2 transition-colors hover:bg-white/20 ${className}`}
     >
       <slot />
     </button>
   ) : (
     <a
       {...rest}
-      class={`p-2 hover:bg-white/20 transition-colors rounded-lg ${className}`}
+      class={`rounded-lg p-2 transition-colors hover:bg-white/20 ${className}`}
     >
       <slot />
     </a>

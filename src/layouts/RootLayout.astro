@@ -24,9 +24,9 @@ const chats = [
     <title>LLUI</title>
   </head>
   <body
-    class="bg-primary-dark text-white h-screen transition-all gap-4 p-4 pb-4"
+    class="h-screen gap-4 bg-primary-dark p-4 pb-4 text-white transition-all"
   >
-    <header class="flex gap-4 items-center">
+    <header class="flex items-center gap-4">
       <Button btn type="button" id="sidebar-toggle" title="toggle menu">
         <MenuIcon />
       </Button>
@@ -38,7 +38,7 @@ const chats = [
       class="grid grid-rows-[auto_auto_1fr] transition-opacity delay-75"
       id="sidebar"
     >
-      <Button btn class="px-6 bg-primary-light shadow-sm justify-self-start">
+      <Button btn class="justify-self-start bg-primary-light px-6 shadow-sm">
         + New Chat
       </Button>
       <h2 class="mt-4 text-xl font-bold">Chats</h2>
@@ -46,7 +46,7 @@ const chats = [
         {
           chats.map((chat) => (
             <li>
-              <Button btn class="w-full text-left px-4">
+              <Button btn class="w-full px-4 text-left">
                 {chat.name}
               </Button>
             </li>
@@ -66,7 +66,7 @@ const chats = [
   const body = document.body as HTMLElement;
   const sidebar = document.getElementById("sidebar") as HTMLElement;
   const sidebarToggle = document.getElementById(
-    "sidebar-toggle"
+    "sidebar-toggle",
   ) as HTMLElement;
 
   sidebarToggle.addEventListener("click", () => {
